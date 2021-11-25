@@ -1,0 +1,262 @@
+:root {
+    --main-bg-color :#ccd5e2 ;
+    --drop-zone-border: #0288d147;
+    --container-width : 500px;
+}
+
+body , html {
+    font-family: system-ui;
+    background-color: var(--main-bg-color);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+body , .drop-zone,  .upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.upload-container{
+     background: #ffff;
+     border-radius: 25px;
+     box-shadow: 0px 20px 20px #0000002e;
+}
+
+.drop-zone {
+   min-height: 200px;
+   width: var(--container-width);
+   margin: 30px;
+   border-radius: 10px;
+    border: 2px dashed var(--drop-zone-border);
+    transition: all .2s ease;
+}
+
+.dragged.drop-zone{
+    background :var(--main-bg-color);
+    border-color: #2196f3;
+}
+
+.icon-container {
+    width: 75px;
+    height: 100px;
+    position: relative;
+}
+
+.icon-container img{
+    width: 75px;
+    position: absolute;
+    transform-origin: bottom;
+    transition: transform 250ms ease-in-out;
+}
+
+.icon-container .center{
+    z-index: 2;
+}
+
+.icon-container .right, .icon-container .left {
+    filter: grayscale(.5);
+    
+}
+
+
+
+.dragged .icon-container .right{
+    transform: rotate(10deg) translateX(20px)  scale(.9);
+}
+
+.dragged .icon-container .left{
+    transform: rotate(-10deg) translateX(-20px) scale(.9);
+}
+.dragged .icon-container .center{
+    transform: translateY(-10px);
+}
+
+
+#fileInput{
+    display: none;
+}
+
+.browsebtn{
+    color: #2196f3;
+    cursor: pointer;
+}
+
+.progress-container {
+    border: 2px solid var(--main-bg-color);
+    width: var(--container-width);
+    height: 70px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    position: relative;
+    display: none;
+  }
+
+.progress-container .bg-progress{
+    background: var(--main-bg-color);
+    width: 0%;
+    height: 100%;
+    border-radius: 3%;
+    
+    transition: width .25s linear;
+    position: absolute;
+}
+
+.progress-container .inner-container{
+    position :absolute;
+    z-index: 2;
+    margin: 10px 15px;
+    width: calc(100% - 30px);
+}
+
+.percent-container{
+    font-size: 13px;
+    margin: 5px;
+    opacity: .8;
+}
+
+.progress-bar{
+    height: 3px;
+    width: 100%;
+    background-color: #03a9f4;
+    border-radius: 2px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform .25s linear;
+
+}
+
+.sharing-container{
+    width: var(--container-width);
+    margin-bottom: 20px;
+    display: none;
+}
+.sharing-container .input-container{
+    position: relative;
+}
+
+p{
+    opacity: .7;
+    text-align: center;
+}
+
+.sharing-container .input-container input{
+    width: 100%;
+    border: 2px dashed var(--drop-zone-border);
+    border-radius: 6px;
+    background: #f5fcff;
+    font-size: 20px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    color: #0000008c;
+}
+
+.input-container img{
+    position: absolute;
+    height: 22px;
+    width: 30px;
+    right: 7px;
+    top: 12px;
+    background: #f7fdff;
+    cursor: pointer;
+}
+
+.email-container{
+    display: flex;
+    align-items: center;
+
+}
+
+.email-container form{
+    width: 100%;
+    border: 2px solid var(--drop-zone-border);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.email-container .fields{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    width: 400px;
+}
+
+.email-container input{
+    font-size: 18px;
+    border: none;
+    border-bottom: 2px solid var(--drop-zone-border);
+    text-align: center;
+
+}
+.email-container label{
+    font-size: 18px;
+}
+.email-container input:focus{
+    outline: none;
+}
+
+
+.email-container button{
+    font-size: 18px;
+    padding: 8px 40px;
+    margin-top: 15px;
+    background-color: #f5fcff;
+    border: none;
+    border-radius: 5px;
+    color: #607d8b;
+    cursor: pointer;
+    
+}
+
+.toast{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    font-size: 18px;
+    transform: translate(-50%, 60px);
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #03a9f4;
+    color: #ffff;
+    box-shadow: 0px 20px 25px -5px rgba(0,0,0,0.1) ,
+     0px 10px 10px -5px rgba(0,0,0,0.04) ;
+     transition: transform ease-in-out 0.2s;
+}
+
+.upload-vector{
+    background: url(./bg.svg) no-repeat center;
+    height: 50vh;
+    width: 50vw;
+    background-size: contain;
+     
+
+}
+
+body{
+    flex-direction: row;
+}
+
+@media screen and (max-width: 900px) {
+    :root {
+      --container-width: 320px;
+    }
+    .upload-vector {
+      display: none;
+    }
+    .email-container .fields {
+      flex-direction: column;
+    }
+    .email-container .fields {
+      width: 300px;
+    }
+  }
+
+
+
